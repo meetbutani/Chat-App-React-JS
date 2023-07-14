@@ -12,7 +12,7 @@ const PasswordShowHideBtn = ({ width, fill, id }) => {
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, []);
+    }, [id]);
 
     function handlePasswordShowHideBtnClick(action) {
         if (action === "show") {

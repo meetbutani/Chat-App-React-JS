@@ -4,43 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Chat from './Chat';
-// import io from 'socket.io-client';
-import { io } from "socket.io-client";
-import { v4 as uuidv4 } from "uuid";
+import io from 'socket.io-client';
 
 const ChatIndividual = ({ user, selectedChat }) => {
   // console.log("selectedchat",selectedChat);
-  // const [socket, setSocket] = useState(null);
   const [response, setResponse] = useState({});
   const [message, setMessage] = useState('');
-  const socket = useRef();
-
-
-  // useEffect(() => {
-  //   // Establish a socket connection
-  //   const newSocket = io('http://localhost:3001');
-  //   setSocket(newSocket);
-
-  //   // Clean up the socket connection on component unmount
-  //   return () => {
-  //     newSocket.disconnect();
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   // Receive new messages from the server
-  //   if (socket) {
-  //     socket.on('message', (data) => {
-  //       // Update the chat state with the received message
-  //       setResponse((prevState) => [...prevState, data]);
-  //     });
-  //   }
-  // }, [socket]);
-
-  // useEffect(() => {
-  //   socket.current = io('http://localhost:3001');
-  //   socket.current.emit("add-user", user.userName);
-  // }, []);
 
   useEffect(() => {
     fetchChats();
@@ -51,31 +20,14 @@ const ChatIndividual = ({ user, selectedChat }) => {
   //   console.log(response);
   // }, [response])
 
-  // Connect to the Socket.io server
-  // useEffect(() => {
-  //   const socket = io('http://localhost:3001');
-
-  //   // Handle new message event
-  //   socket.on('newMessage', (message) => {
-  //     // Update the chat with the new message
-  //     setResponse((prevResponse) => ({
-  //       data: [...prevResponse.data, message],
-  //     }));
-  //   });
-
-  //   return () => {
-  //     // Disconnect from the Socket.io server when component unmounts
-  //     socket.disconnect();
-  //   };
-  // }, []);
-
   // const socket = io('http://localhost:3001');
+
   // useEffect(() => {
 
   //   // Listen for new message event
   //   socket.on('newMessage', (message) => {
   //     // Check if the message is for the selected receiver
-  //     console.log("New message: ", message);
+  //     console.log(message);
   //     if (message.receiver === user.userName) {
   //       // Update the chat with the new message
   //       setResponse((prevResponse) => ({
@@ -87,43 +39,59 @@ const ChatIndividual = ({ user, selectedChat }) => {
   //   return () => {
   //     socket.disconnect();
   //   };
-  // }, [selectedChat.userName]);
+  // }, []);
+
+  const socket = useRef(null);
+
+  useEffect(() => {
+    socket.current = io('http://localhost:3001');
+
+    // Join the room corresponding to the selected chat user
+    socket.current.emit('joinRoom', user.userName);
+
+    // Cleanup function
+    return () => {
+      socket.current.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    // Listen for received messages
+    socket.current.on('messageReceived', (data) => {
+      // Update the chat messages with the received message
+      console.log("New Message:", data.message, data.message.sender === selectedChat.userName);
+      if (data.message.sender === selectedChat.userName) {
+        setResponse((prevResponse) => {
+          return {
+            ...prevResponse,
+            data: [...prevResponse.data, data.message],
+          };
+        });
+      }
+    });
+
+    console.log("selectedChat", selectedChat);
+  }, [selectedChat.userName]);
+
 
   function handleMessageSend(event) {
     event.preventDefault();
-    // console.log("Clicked", message);
-    // if (socket) {
-    //   // Emit the message event to the server
-    //   socket.emit('message', { sender: user, receiver: selectedChat.userName, message: message });
-
-    //   // Clear the input field
-    //   setMessage('');
-    // }
-
-    // setMessage('');
 
     // Emit the new message event to the Socket.io server
     // socket.emit('newMessage', { receiver: selectedChat.userName, message });
-
-    // // Send the message to the server as before
-    // axios
-    //   .post('http://localhost:3001/api/sendchat', {
-    //     receiver: selectedChat.userName,
-    //     message: message,
-    //   })
-    //   .then((resp) => console.log(resp))
-    //   .catch((error) => console.log(error));
-
-    socket.current.emit("send-msg", {
-      receiver: selectedChat.userName,
-      message: message,
+    socket.current.emit('sendMessage', {
+      receiver: selectedChat.userName, message: {
+        message: message,
+        time: new Date().toISOString(),
+        _id: new Date().getTime(),
+        sender: user.userName
+      }
     });
 
-
     setMessage("");
-    axios.post("http://localhost:3001/api/sendchat", { receiver: selectedChat.userName, message: message })
-      // .then(resp => console.log(resp))
-      .catch(error => console.log(error));
+    // axios.post("http://localhost:3001/api/sendchat", { receiver: selectedChat.userName, message: message })
+    //   // .then(resp => console.log(resp))
+    //   .catch(error => console.log(error));
   }
 
   function fetchChats() {

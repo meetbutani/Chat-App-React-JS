@@ -3,19 +3,12 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// const http = require('http');
-// const socketIO = require('socket.io');
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 const app = express();
-const socket = require("socket.io");
-// const server = http.createServer(app);
-// const io = socketIO(server);
-// const server = require('http').Server(app);
-// const io = require('socket.io')(server);
 
 app.use(express.json());
 
@@ -55,65 +48,42 @@ app.use('/api', routes)
 
 app.use('/uploads', express.static('uploads'));
 
-// // Handle socket connection
-// io.on('connection', (socket) => {
-//     console.log('A user connected');
-
-//     // Handle message event
-//     socket.on('message', (data) => {
-//         // Broadcast the message to all connected clients
-//         io.emit('message', data);
-//     });
-
-//     // Handle disconnect event
-//     socket.on('disconnect', () => {
-//         console.log('A user disconnected');
-//     });
-// });
-
-// Initialize Socket.io
-// io.on('connection', (socket) => {
-//     console.log('A user connected');
-
-//     // Handle new message event
-//     socket.on('newMessage', (message) => {
-//         // Broadcast the message to the specified receiver user
-//         // socket.broadcast.emit('newMessage', message);
-//         // Broadcast the message to all connected clients
-//         socket.emit('newMessage', message);
-//         // io.emit('newMessage', message);
-//     });
-
-//     // Handle disconnection
-//     socket.on('disconnect', () => {
-//         console.log('A user disconnected');
-//     });
-// });
-
-const LISTENINGPORT = 3001;
-const server = app.listen(LISTENINGPORT, () => {
-    console.log(`Server Started at ${LISTENINGPORT}`)
-})
-
-const io = socket(server, {
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
     cors: {
         origin: "http://localhost:3000",
         credentials: true,
     },
 });
-//store all online users inside this map
-global.onlineUsers = new Map();
 
-io.on("connection", (socket) => {
-    global.chatSocket = socket;
-    socket.on("add-user", (userId) => {
-        onlineUsers.set(userId, socket.id);
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    // Get username and room from session
+    socket.on("joinRoom", (userName) => {
+        socket.join(userName);
     });
 
-    socket.on("send-msg", (data) => {
-        const sendUserSocket = onlineUsers.get(data.to);
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("msg-recieved", data.message);
-        }
+    // Handle message sending
+    socket.on('sendMessage', ({ receiver, message }) => {
+        // Save the message to the database or perform any other necessary operations
+        // Emit the message to the sender
+        socket.emit('messageReceived', { sender: socket.userId, message });
+        
+        // console.log(receiver);
+        // Emit the message to the receiver
+        socket.broadcast
+            .to(receiver).emit('messageReceived', { sender: socket.userId, message });
     });
+
+    // Handle user disconnection
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
+});
+
+const LISTENINGPORT = 3001;
+// Change the app.listen line to use the server instance
+server.listen(LISTENINGPORT, () => {
+    console.log(`Server Started at ${LISTENINGPORT}`);
 });

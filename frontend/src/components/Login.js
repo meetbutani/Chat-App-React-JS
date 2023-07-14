@@ -1,5 +1,5 @@
 import '../scss/Login.scss'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PasswordShowHideBtn from './imageComponent/PasswordShowHideBtn';
 import md5 from 'md5';
 import { Link, useNavigate } from 'react-router-dom';

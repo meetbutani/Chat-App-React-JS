@@ -6,8 +6,6 @@ import '../scss/Home.scss'
 import axios from 'axios';
 import AddContact from './Home/AddContact';
 import ChatIndividual from './Home/ChatIndividual';
-const socket = useRef();
-import { io } from "socket.io-client";
 
 const Home = ({ user }) => {
 
@@ -33,11 +31,6 @@ const Home = ({ user }) => {
         setSelectedChat({ ...contact })
         setDisplayComponenet('chat');
     }
-
-    useEffect(() => {
-        socket.current = io('http://localhost:3001');
-        socket.current.emit("add-user", user.userName);
-    }, []);
 
     return (
         <>
