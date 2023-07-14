@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="295.283 308.794 209.395 182.982" xmlns="http://www.w3.org/2000/svg">
+  <path
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    d="M 300 400 C 354.851 465.637 442.071 467.372 500 400" />
+  <line
+    style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round;"
+    x1="400" y1="485.464" x2="400" y2="458.85" />
+  <line
+    style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round;"
+    x1="447.153" y1="476.355" x2="447.153" y2="449.741"
+    transform="matrix(0.939693, -0.34202, 0.34202, 0.939693, -131.405031, 180.860385)" />
+  <line
+    style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round;"
+    x1="487.348" y1="454.85" x2="487.348" y2="428.236"
+    transform="matrix(0.766044, -0.642788, 0.642788, 0.766044, -169.800616, 416.563117)" />
+  <line
+    style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round;"
+    x1="352.494" y1="449.995" x2="352.494" y2="476.609"
+    transform="matrix(-0.939693, -0.34202, 0.34202, -0.939693, 525.271553, 1019.223526)" />
+  <line
+    style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round;"
+    x1="312.299" y1="428.493" x2="312.299" y2="455.107"
+    transform="matrix(-0.766044, -0.642788, 0.642788, -0.766044, 267.550053, 980.980361)" />
+</svg>

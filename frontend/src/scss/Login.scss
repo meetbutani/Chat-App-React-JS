@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form Container */
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+
+    .main-heading {
+        margin: 0;
+        color: #E2E3E5;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        line-height: 32px;
+        align-self: center;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    /* Registration Form */
+    .login-form {
+        // background-color: #f3f3f3;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 40px;
+        width: 400px;
+        border: 2px solid #232323;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        background-color: #232323;
+        margin: 20px 0;
+    }
+
+    .form-field {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
+    label {
+        color: #8083A3;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: Lato, sans-serif;
+        line-height: 21px;
+        margin-bottom: 5px;
+
+        display: flex;
+        align-items: center;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    button {
+        border: none;
+        border-radius: 3px;
+        box-sizing: border-box;
+        width: 100%;
+        background: transparent;
+        padding: 10px;
+        color: #D3D3D3;
+        font-family: Lato, sans-serif;
+    }
+
+    .input-field {
+        border: 1px solid #3D3D3D;
+        border-radius: 3px;
+        box-sizing: border-box;
+        width: 100%;
+        background: transparent;
+        display: flex;
+        flex-direction: row;
+    }
+
+    svg.password-show-hide-btn {
+        padding: 0 5px;
+        cursor: pointer;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    button {
+        background-color: #3D3D3D;
+        color: #D3D3D3;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #4e4e4e;
+        color: #ffffff;
+    }
+
+    /* Checkbox Styling */
+    input[type='checkbox'] {
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+
+    .loginToRegister {
+        color: #8083A3;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: Lato, sans-serif;
+        line-height: 21px;
+        margin-bottom: 5px;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: #D3D3D3;
+        }
+    }
+}
+
+/* Media Queries */
+@media (max-width: 480px) {
+    .login {
+        .login-form {
+            width: 100%;
+        }
+    }
+}

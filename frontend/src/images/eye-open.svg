@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-4.86 308.794 209.395 182.982" xmlns="http://www.w3.org/2000/svg">
+  <path
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    d="M 0 400 C 54.851 334.363 142.071 332.628 200 400" />
+  <path
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    d="M 0 449.881 C 54.851 384.244 142.071 382.509 200 449.881"
+    transform="matrix(-1, 0, 0, -1, 200.000003, 849.881482)" />
+  <line
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    x1="100" y1="314.536" x2="100" y2="341.15" />
+  <line
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    x1="147.153" y1="323.646" x2="147.153" y2="350.26"
+    transform="matrix(0.939693, 0.34202, -0.34202, 0.939693, 124.11902, -30.00853)" />
+  <line
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    x1="187.348" y1="345.15" x2="187.348" y2="371.764"
+    transform="matrix(0.766044, 0.642788, -0.642788, 0.766044, 274.243077, -36.561917)" />
+  <line
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    x1="52.494" y1="350.005" x2="52.494" y2="323.391"
+    transform="matrix(-0.939693, 0.34202, -0.34202, -0.939693, 216.979648, 635.136667)" />
+  <line
+    style="stroke: rgb(0, 0, 0); stroke-width: 12px; stroke-linecap: round; fill: rgba(255, 255, 255, 0);"
+    x1="12.299" y1="371.508" x2="12.299" y2="344.894"
+    transform="matrix(-0.766044, 0.642788, -0.642788, -0.766044, 251.96793, 624.693125)" />
+  <ellipse style="stroke: rgb(0, 0, 0);" cx="100" cy="400" rx="30" ry="30" />
+</svg>
