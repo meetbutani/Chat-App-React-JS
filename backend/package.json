@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "prodstart": "node ./backend/index.js",
+    "prodstart": "node ./index.js",
     "build": "npm run build"
   },
   "author": "Meet Butani",

@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: ['http://localhost:3000', 'http://localhost:3001', "http://192.168.1.45:3000", "http://192.168.1.45:3001"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
